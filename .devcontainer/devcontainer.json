@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Node.js & TypeScript",
+    "build": {
+        "dockerfile": "./Dockerfile"
+    },
+    "workspaceFolder": "/workspaces/wsiota.github.io",
+    "portsAttributes": {
+        "4321": {
+            "label": "Application",
+            "onAutoForward": "openPreview"
+        }
+    },
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [4321],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "pnpm install && cd /workspaces/wsiota.github.io && pnpm run build",
+    "waitFor": "postCreateCommand",
+    "postAttachCommand": {
+        "Server": "pnpm start --host"
+    },
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "src/pages/index.astro"
+            ]
+        },
+        "vscode": {
+            "extensions": [
+                "astro-build.astro-vscode",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
