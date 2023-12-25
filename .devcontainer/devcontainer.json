@@ -5,7 +5,6 @@
     "build": {
         "dockerfile": "./Dockerfile"
     },
-    "workspaceFolder": "/workspaces/wsiota.github.io",
     "portsAttributes": {
         "4321": {
             "label": "Application",
@@ -20,7 +19,7 @@
 	"forwardPorts": [4321],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "pnpm install && cd /workspaces/wsiota.github.io && pnpm run build",
+    "postCreateCommand": "pnpm install && pnpm run build",
     "waitFor": "postCreateCommand",
     "postAttachCommand": {
         "Server": "pnpm start --host"
